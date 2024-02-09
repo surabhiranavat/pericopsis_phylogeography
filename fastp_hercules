@@ -1,0 +1,29 @@
+#!/bin/bash
+# Submission script for Hercules2
+#SBATCH --time=1-12:00:00 # days-hh:mm:ss
+#
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem-per-cpu=16384 # 16GB
+#SBATCH --partition=hmem
+#
+#SBATCH --mail-user=surabhi.ranavat@ulb.be
+#SBATCH --mail-type=ALL
+#
+#SBATCH --output=fastp_log.txt
+
+module purge
+module load releases/2021a
+module load fastp/0.23.2-GCC-10.3.0
+cd /CECI/proj/eeg/hardy_lab/Pericopsis
+export OMP_NUM_THREADS=16
+export MKL_NUM_THREADS=16
+echo "Job started on $(date)"
+##for looping through PE files
+for f1 in *_R1_001.fastq.gz
+do
+  	f2="${f1%_R1_001.fastq.gz}_R2_001.fastq.gz"
+        fastp -i $f1 -I $f2 -o "trimmed-$f1" -O "trimmed-$f2" --trim_poly_x --detect_adapter_for_pe --correction --overrepresentation_analysis -h "fastp-$f1.html"
+done
+
+echo "Job ended on $(date)"
