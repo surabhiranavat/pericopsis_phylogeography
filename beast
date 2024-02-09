@@ -1,0 +1,18 @@
+
+##BEAST for command line, useful for when the number of trees is very high
+
+ml  Beast/2.7.5-GCC-11.3.0-CUDA-11.7.0
+
+beast -seed 8800 -threads 10 SR_G_HKY_relaxedlognorm_newick_Coalcst_Fab66_rob33_narrow_wide_wilsonbalding_subtreeslide_150M.xml
+
+logcombiner -log SR_G_HKY_relaxedlognorm_newick_Coalcst_Fab66_rob33_narrow_wide_wilsonbalding_subtreeslide_150M-filtered_choi_combined_oh_rd2_1,2.trees -b 90 -o SR_G_HKY_newick_lognorm.trees -resample 10000
+
+treeannotator -burnin 50 -heights median SR_G_HKY_newick_lognorm.trees SR_G_HKY_newick_lognorm_treeanotated.tree
+
+
+##Redoing this with less burnin
+
+logcombiner -log SR_G_HKY_relaxedlognorm_newick_Coalcst_Fab66_rob33_narrow_wide_wilsonbalding_subtreeslide_150M-filtered_choi_combined_oh_rd2_1,2.trees \
+-b 10 -o SR_G_HKY_newick_lognorm.trees -resample 10000
+
+treeannotator -burnin 10 -heights median SR_G_HKY_newick_lognorm.trees SR_G_HKY_newick_lognorm_treeanotated.tree
