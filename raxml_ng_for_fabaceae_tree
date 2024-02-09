@@ -1,7 +1,5 @@
-##Running RAxML-NG on ebe1
 
-mamba activate raxml
-
+##RAxML-NG v1.2.0
 ##First check if the alignment can be read by RAxML
 
 raxml-ng --check --msa filtered_choi_combined_oh_rd2.fasta --model GTR+G --prefix T1
