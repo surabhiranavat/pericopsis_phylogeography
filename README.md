@@ -1,3 +1,3 @@
-# pericopsis_phylogeography
+# <i>Pericopsis elata</i> phylogeography 
 
-This is a repo for all the code for the phylogeography for the species <i>Pericopsis elata</i>
+This is a repository for all the code associated with the paper [Mid-Pleistocene origin and phylogeographic signatures of recurrent expansion-fragmentation of a highly inbred and endangered African timber legume](https://doi.org/10.1093/botlinnean/boaf033).
